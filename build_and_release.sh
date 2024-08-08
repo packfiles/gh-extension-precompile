@@ -26,6 +26,9 @@ if [[ "$DRAFT_RELEASE" = "true" ]]; then
   draft_release="--draft"
 fi
 
+# invoke go generate for all source files
+find . -iname "*.go" -exec go generate {} \;
+
 if [ -n "$GH_EXT_BUILD_SCRIPT" ]; then
   echo "invoking build script override $GH_EXT_BUILD_SCRIPT"
   ./"$GH_EXT_BUILD_SCRIPT" "$GH_RELEASE_TAG"
